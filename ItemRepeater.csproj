@@ -65,6 +65,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,11 +77,20 @@
   <ItemGroup>
     <Compile Include="ItemRepeater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repeater.cs" />
+    <Compile Include="RepeaterModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
+    <None Include="views\Repeater.cshtml" />
+    <None Include="views\_GeneratePopup.cshtml" />
+    <None Include="views\_Grid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Repeater.css" />
+    <Content Include="Repeater.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -89,7 +101,7 @@ del $(ProjectDir)$(TargetName).pdb
 rem copy $(TargetDir)$(TargetName).pdb $(ProjectDir)$(TargetName).pdb
 
 del $(ProjectDir)$(TargetName).zip
-$(ProjectDir)libs\7za.exe a $(TargetDir)$(TargetName).zip $(ProjectDir)*.dll $(ProjectDir)*.pdb $(ProjectDir)*.manifest 
+$(ProjectDir)libs\7za.exe a $(TargetDir)$(TargetName).zip $(ProjectDir)*.dll $(ProjectDir)*.pdb $(ProjectDir)*.manifest $(ProjectDir)views $(ProjectDir)*.css $(ProjectDir)*.js
 
 del $(ProjectDir)$(TargetName).dll
 del $(ProjectDir)$(TargetName).pdb</PostBuildEvent>
