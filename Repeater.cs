@@ -197,8 +197,6 @@ namespace ItemRepeater
             }
 
 
-            startDateTime = startDateTime.Value.AddMilliseconds(issue.Created.TimeOfDay.TotalMilliseconds);
-            endDateTime = endDateTime.Value.AddMilliseconds(issue.Created.TimeOfDay.TotalMilliseconds);
 
             for (DateTime date = startDateTime.Value; date <= endDateTime.Value; date = date.AddDays(1))
             {
@@ -277,7 +275,7 @@ namespace ItemRepeater
 
                     if (repeated.Entity.Id > 0)
                     {
-                        string statment = string.Format("update gemini_issues set created = '{0}' where issueid = {1}", date.ToUniversalTime().ToString("MM/dd/yyyy HH:mm:ss"), repeated.Entity.Id);
+                        string statment = string.Format("update gemini_issues set created = '{0}' where issueid = {1}", date.ToString("MM/dd/yyyy HH:mm:ss"), repeated.Entity.Id);
 
                         SQLService.Instance.ExecuteQuery(statment);
                     }
