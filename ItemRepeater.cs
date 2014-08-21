@@ -73,6 +73,7 @@ namespace ItemRepeater
                         issue.Entity.OriginatorType = IssueOriginatorType.Repeat;
 
                         issue.Entity.ParentIssueId = null;
+                        issue.Entity.IsParent = false;
 
                         issue.Entity.StatusId = 0;
 

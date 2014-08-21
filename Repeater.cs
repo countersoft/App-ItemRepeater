@@ -246,6 +246,7 @@ namespace ItemRepeater
                     issue.Entity.OriginatorType = IssueOriginatorType.Repeat;
 
                     issue.Entity.ParentIssueId = null;
+                    issue.Entity.IsParent = false;
 
                     issue.Entity.StatusId = 0;
 
@@ -275,9 +276,9 @@ namespace ItemRepeater
 
                     if (repeated.Entity.Id > 0)
                     {
-                        string statment = string.Format("update gemini_issues set created = '{0}' where issueid = {1}", date.ToString("MM/dd/yyyy HH:mm:ss"), repeated.Entity.Id);
+                        string statment = "update gemini_issues set created = @created where issueid = @issueid";
 
-                        SQLService.Instance.ExecuteQuery(statment);
+                        SQLService.Instance.ExecuteQuery(statment, new { created = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0).ToUtc(UserContext.User.TimeZone), issueid = repeated.Entity.Id });
                     }
 
                     if (customFields != null && customFields.Count > 0)
