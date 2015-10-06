@@ -78,6 +78,9 @@ namespace ItemRepeater
                         issue.Entity.StatusId = 0;
 
                         issue.Entity.ResolutionId = 0;
+                        issue.Entity.Watchers = string.Empty;
+                        issue.Entity.LoggedHours = 0;
+                        issue.Entity.LoggedMinutes = 0;
 
                         if (issue.Entity.StartDate.HasValue && issue.Entity.DueDate.HasValue
                             && issue.Entity.StartDate != new DateTime() && issue.Entity.DueDate != new DateTime())
