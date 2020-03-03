@@ -63,7 +63,7 @@ namespace ItemRepeater
                     if (repeat.NeedsToRepeat(lastRepeatedDate))
                     {
                         var customFields = issue.CustomFields;
-                        
+
                         issue.Attachments = new List<IssueAttachmentDto>();
 
                         issue.Entity.Repeated = string.Empty;
@@ -99,6 +99,10 @@ namespace ItemRepeater
 
                         int issueId = issue.Id;
 
+                        //Set the ID to 0 so it does not steal the custom fields for that tissue
+                        var originalIssueID = issue.Entity.Id;
+                        issue.Entity.Id = 0;
+
                         IssueDto repeated = issueManager.Create(issue.Entity);
 
                         if (customFields != null && customFields.Count > 0)
@@ -109,7 +113,10 @@ namespace ItemRepeater
                             {
                                 try
                                 {
-                                    field.Entity.Id = 0;
+                                    //Find the existing ID to 'replace', if exists.
+                                    var existingCF = repeated.CustomFields
+                                        .SingleOrDefault( s => s.Entity.CustomFieldId == field.Entity.CustomFieldId );
+                                    field.Entity.Id = existingCF == null ? 0 : existingCF.Entity.Id;
 
                                     field.Entity.IssueId = repeated.Entity.Id;
 

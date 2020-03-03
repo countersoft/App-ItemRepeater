@@ -3,8 +3,8 @@
     <name>Item Repeater</name>
     <description>Repeats items at specified intervals</description>
     <version-major>3</version-major>
-    <version-minor>0</version-minor>
-    <version-patch>0</version-patch>
+    <version-minor>1</version-minor>
+    <version-patch>3</version-patch>
     <publisher>Countersoft</publisher>
     <released>2019-01-10T11:31:00Z</released>
     <debug>false</debug>
