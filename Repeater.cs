@@ -287,7 +287,10 @@ namespace ItemRepeater
                         {
                             try
                             {
-                                field.Entity.Id = 0;
+                                //Find the existing ID to 'replace', if exists.
+                                var existingCF = repeated.CustomFields
+                                    .SingleOrDefault(s => s.Entity.CustomFieldId == field.Entity.CustomFieldId);
+                                field.Entity.Id = existingCF == null ? 0 : existingCF.Entity.Id;
 
                                 field.Entity.IssueId = repeated.Entity.Id;
 
